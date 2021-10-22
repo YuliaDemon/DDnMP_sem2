@@ -3,31 +3,45 @@
 <pre>
 <h1>�Vision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: �Vision V5.35.0.0
+IDE-Version: �Vision V5.36.0.0
 Copyright (C) 2021 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Yulia Yulia, SFU, LIC=----
+License Information: Timur Baturin, SFU, LIC=----
  
 Tool Versions:
-Toolchain:       MDK-Lite  Version: 5.35.0.2
+Toolchain:       MDK-Lite  Version: 5.36.0.0
 Toolchain Path:  C:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 7 (build 960)
 Assembler:       Armasm.exe V5.06 update 7 (build 960)
 Linker/Locator:  ArmLink.exe V5.06 update 7 (build 960)
 Library Manager: ArmAr.exe V5.06 update 7 (build 960)
 Hex Converter:   FromElf.exe V5.06 update 7 (build 960)
-CPU DLL:         SARMCM3.DLL V5.35.0.2
+CPU DLL:         SARMCM3.DLL V5.36.0.0
 Dialog DLL:      DCM.DLL V1.17.3.0
 Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\����\Desktop\2laba\Demeneva2VC18-01\DDnMP_laba_2_exemple.uvprojx
-Project File Date:  10/17/2021
+D:\SFU\git\DemenevaYulia\DDnMP_laba_2_exemple.uvprojx
+Project File Date:  10/22/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
-".\Objects\DDnMP_laba_2_exemple.axf" - 0 Error(s), 0 Warning(s).
+Rebuild target 'Target 1'
+assembling main_1.s...
+assembling startup.s...
+compiling main.c...
+main.c(49): warning:  #111-D: statement is unreachable
+  	return 0;
+main.c(57): warning:  #223-D: function "malloc" declared implicitly
+  	new_array =  (int32_t*) (malloc(array_size));
+main.c(86): warning:  #940-D: missing return statement at end of non-void function "array_upor" 
+  }
+main.c(76): warning:  #177-D: variable "j"  was declared but never referenced
+  	int32_t* j = (zero_index); // Вспомогательная переменная
+main.c: 4 warnings, 0 errors
+linking...
+Program Size: Code=1052 RO-data=40 RW-data=44 ZI-data=3212  
+".\Objects\DDnMP_laba_2_exemple.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -37,10 +51,10 @@ Package Vendor: Keil
                 STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  C:\Keil\Keil\STM32F1xx_DFP\2.3.0\Device\Include
+  C:\Users\Timur\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
