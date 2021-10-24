@@ -5,57 +5,86 @@ ARM Macro Assembler    Page 1
 
 
     1 00000000                 AREA             |.text|, CODE, READONLY
-    2 00000000         
-    3 00000000         array_treatment_asm
+    2 00000000         array_zapis
+                               PROC                         ; Начало фу
+                                                            нкции array_su
+                                                            m_asm
+    3 00000000                 EXPORT           array_zapis
+    4 00000000 F04F 0100       MOV              R1,#0
+    5 00000004         ZAPIS
+    6 00000004 4299            CMP              R1,R3
+    7 00000006 D004            BEQ              exit
+    8 00000008 5845            LDR              R5,[R0,R1]  ; ЗАПИСЫВА�
+                                                            �М В R5 
+    9 0000000A 5055            STR              R5,[R2,R1]
+   10 0000000C F101 0104       ADD              R1,#4
+   11 00000010 E7F8            B                ZAPIS
+   12 00000012         exit
+   13 00000012 4770            BX               LR
+   14 00000014                 ENDP                         ; Конец фун
+                                                            кции array_sum_
+                                                            asm
+   15 00000014         
+   16 00000014         array_treatment_asm
                                PROC                         ; Начало фу
                                                             нкции array_tr
                                                             eatment_asm
-    4 00000000                 EXPORT           array_treatment_asm
-    5 00000000         ; Функция (процедура) реализует
+   17 00000014                 EXPORT           array_treatment_asm
+   18 00000014         ; Функция (процедура) реализует
                         обработку массива в соответст
                        вии с заданием 
-    6 00000000         ; Функция принимает указатель �
+   19 00000014         ; Функция принимает указатель �
                        �а массив через регистр R0,
-    7 00000000         ; размер массива через регистр 
+   20 00000014         ; размер массива через регистр 
                        R1,
-    8 00000000         ; указатель на пустой массив че
+   21 00000014         ; указатель на пустой массив че
                        рез регистр R2
-    9 00000000         ; R0 = *array
-   10 00000000         ; R1 = size(array)
-   11 00000000         ; R2 = *new_array 
-   12 00000000 F04F 0300       MOV              R3, #0
-   13 00000004         VVOD
-   14 00000004 428B            CMP              R3,R1       ;R3-i 
-   15 00000006 DC06            BGT              EXIT_FUCTION
-   16 00000008 58C5            LDR              R5,[R0,R3]  ; ЗАПИСЫВА�
+   22 00000014         ; R0 = *array
+   23 00000014         ; R1 = size(array)
+   24 00000014         ; R2 = *new_array 
+   25 00000014 F04F 0300       MOV              R3, #0
+   26 00000018         VVOD
+   27 00000018 428B            CMP              R3,R1       ;R3-i 
+   28 0000001A DC05            BGT              EXIT_FUCTION
+   29 0000001C 58C5            LDR              R5,[R0,R3]  ; ЗАПИСЫВА�
                                                             �М В R5      
-   17 0000000A 2D00            CMP              R5,#0
-   18 0000000C D003            BEQ              EXIT_FUCTION
-   19 0000000E 50D5            STR              R5,[R2,R3]  ; ЗАПИСЬ ИЗ
-                                                             R5
-   20 00000010 F103 0304       ADD              R3,#4
-   21 00000014 E7F6            B                VVOD
-   22 00000016         ; Вызываем процедуру вычислени
+   30 0000001E 2D00            CMP              R5,#0
+   31 00000020 D002            BEQ              EXIT_FUCTION
+   32 00000022 F103 0304       ADD              R3,#4
+   33 00000026 E7F7            B                VVOD
+   34 00000028         ; Вызываем процедуру вычислени
                        я суммы массива
-   23 00000016         
-   24 00000016         EXIT_FUCTION
-   25 00000016 4770            BX               LR          ; Возвраща�
+   35 00000028         
+   36 00000028         EXIT_FUCTION
+   37 00000028 B50F            PUSH             {R0-R3, LR} ; записыва�
+                                                            �м все необ
+                                                            ходимые ре
+                                                            гистры в с�
+                                                            �ек
+   38 0000002A F7FF FFFE       BL               array_zapis
+   39 0000002E E8BD 400F       POP              {R0-R3, LR}
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   40 00000032 4770            BX               LR          ; Возвраща�
                                                             �мся назад 
                                                             по адресу �
                                                             �асположен
                                                             ному в рег�
                                                             �стре LR
-   26 00000018                 ENDP                         ; Конец фун
+   41 00000034                 ENDP                         ; Конец фун
                                                             кции array_trea
                                                             tment_asm
-   27 00000018         
-   28 00000018                 END                          ; Конец фай
+   42 00000034                 END                          ; Конец фай
                                                             ла
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
-ork --depend=.\objects\main_1.d -o.\objects\main_1.o -IC:\Users\Timur\AppData\L
-ocal\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include --predefine="__EVAL SETA
- 1" --predefine="__UVISION_VERSION SETA 536" --predefine="STM32F10X_MD SETA 1" 
---list=.\listings\main_1.lst main_1.s
+ork --depend=.\objects\main_1.d -o.\objects\main_1.o -IC:\Keil\Keil\STM32F1xx_D
+FP\2.3.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERS
+ION SETA 535" --predefine="STM32F10X_MD SETA 1" --list=.\listings\main_1.lst ma
+in_1.s
 
 
 
@@ -70,30 +99,61 @@ Symbol: .text
    Uses
       None
 Comment: .text unused
-EXIT_FUCTION 00000016
+EXIT_FUCTION 00000028
 
 Symbol: EXIT_FUCTION
    Definitions
-      At line 24 in file main_1.s
+      At line 36 in file main_1.s
    Uses
-      At line 15 in file main_1.s
-      At line 18 in file main_1.s
+      At line 28 in file main_1.s
+      At line 31 in file main_1.s
 
-VVOD 00000004
+VVOD 00000018
 
 Symbol: VVOD
    Definitions
-      At line 13 in file main_1.s
+      At line 26 in file main_1.s
    Uses
-      At line 21 in file main_1.s
+      At line 33 in file main_1.s
 Comment: VVOD used once
-array_treatment_asm 00000000
+ZAPIS 00000004
+
+Symbol: ZAPIS
+   Definitions
+      At line 5 in file main_1.s
+   Uses
+      At line 11 in file main_1.s
+Comment: ZAPIS used once
+array_treatment_asm 00000014
 
 Symbol: array_treatment_asm
    Definitions
-      At line 3 in file main_1.s
+      At line 16 in file main_1.s
    Uses
-      At line 4 in file main_1.s
+      At line 17 in file main_1.s
 Comment: array_treatment_asm used once
-4 symbols
-337 symbols in table
+array_zapis 00000000
+
+Symbol: array_zapis
+   Definitions
+      At line 2 in file main_1.s
+   Uses
+      At line 3 in file main_1.s
+      At line 38 in file main_1.s
+
+exit 00000012
+
+Symbol: exit
+   Definitions
+      At line 12 in file main_1.s
+   Uses
+      At line 7 in file main_1.s
+Comment: exit used once
+7 symbols
+
+
+
+ARM Macro Assembler    Page 2 Alphabetic symbol ordering
+Relocatable symbols
+
+340 symbols in table
